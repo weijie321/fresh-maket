@@ -1,0 +1,25 @@
+services:
+  api:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://fresh:fresh@db:5432/fresh_market}
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: fresh_market
+      POSTGRES_USER: fresh
+      POSTGRES_PASSWORD: fresh
+    ports:
+      - "5432:5432"
+    volumes:
+      - fresh_market_pg:/var/lib/postgresql/data
+
+volumes:
+  fresh_market_pg:
