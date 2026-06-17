@@ -64,6 +64,31 @@ buildConfigField("String", "API_BASE_URL", "\"http://192.168.1.10:8000\"")
 
 然后用 Android Studio 打开 `E:\work\code\fresh-market-v1` 运行 `android:app`。
 
+### 本机命令行构建
+
+当前这台机器已验证的工具链：
+
+- JDK：`E:\work\jdk\21`
+- Android SDK：`E:\work\toolchain\android-sdk`
+- Gradle：`E:\work\toolchain\gradle-8.10.2\bin\gradle.bat`
+
+构建 debug APK：
+
+```powershell
+cd E:\work\code\fresh-market-v1
+$env:JAVA_HOME='E:\work\jdk\21'
+$env:ANDROID_HOME='E:\work\toolchain\android-sdk'
+$env:ANDROID_SDK_ROOT=$env:ANDROID_HOME
+$env:Path="$env:JAVA_HOME\bin;$env:ANDROID_HOME\cmdline-tools\latest\bin;$env:ANDROID_HOME\platform-tools;$env:Path"
+E:\work\toolchain\gradle-8.10.2\bin\gradle.bat :android:app:assembleDebug
+```
+
+构建产物：
+
+```text
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
 ## 测试
 
 ```powershell
