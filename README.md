@@ -56,13 +56,15 @@ cd E:\work\code\fresh-market-v1\backend
 http://10.0.2.2:8000
 ```
 
-真机调试时，把 `android/app/build.gradle.kts` 中的 `API_BASE_URL` 改为电脑局域网 IP，例如：
+真机调试时不用改源码，构建时通过 `apiBaseUrl` 传入电脑局域网 IP，例如：
 
-```kotlin
-buildConfigField("String", "API_BASE_URL", "\"http://192.168.1.10:8000\"")
+```powershell
+E:\work\toolchain\gradle-8.10.2\bin\gradle.bat :android:app:assembleDebug -PapiBaseUrl=http://192.168.1.10:8000
 ```
 
 然后用 Android Studio 打开 `E:\work\code\fresh-market-v1` 运行 `android:app`。
+
+客户端 `minSdk` 为 21，已在 OPPO R9 Plusm A（Android 5.1.1 / API 22）上安装并启动验证。
 
 ### 本机命令行构建
 
@@ -81,6 +83,12 @@ $env:ANDROID_HOME='E:\work\toolchain\android-sdk'
 $env:ANDROID_SDK_ROOT=$env:ANDROID_HOME
 $env:Path="$env:JAVA_HOME\bin;$env:ANDROID_HOME\cmdline-tools\latest\bin;$env:ANDROID_HOME\platform-tools;$env:Path"
 E:\work\toolchain\gradle-8.10.2\bin\gradle.bat :android:app:assembleDebug
+```
+
+真机构建示例：
+
+```powershell
+E:\work\toolchain\gradle-8.10.2\bin\gradle.bat :android:app:assembleDebug -PapiBaseUrl=http://192.168.1.106:8000
 ```
 
 构建产物：

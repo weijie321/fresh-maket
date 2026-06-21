@@ -6,7 +6,8 @@
 
 - 后端入口：`backend/app/main.py`，本地默认运行在 `127.0.0.1:8000`。
 - 后端测试命令：`cd backend; .\.venv\Scripts\python.exe -m pytest -q`。
-- Android 客户端默认 API：`http://10.0.2.2:8000`，真机调试时改 `android/app/build.gradle.kts` 的 `API_BASE_URL`。
+- Android 客户端默认 API：`http://10.0.2.2:8000`，真机调试时用 `-PapiBaseUrl=http://<电脑局域网IP>:8000` 构建，不要手改源码。
+- Android 客户端 `minSdk` 为 21，已在 OPPO R9 Plusm A（Android 5.1.1 / API 22）上安装并启动验证。
 - 本机 Android 构建使用 `E:\work\jdk\21`、`E:\work\toolchain\android-sdk`、`E:\work\toolchain\gradle-8.10.2\bin\gradle.bat`。
 - `local.properties`、`.venv/`、`.gradle/`、`android/app/build/` 都是本机产物，不要提交。
 

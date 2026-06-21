@@ -4,17 +4,19 @@ plugins {
     id("org.jetbrains.kotlin.plugin.serialization")
 }
 
+val apiBaseUrl = providers.gradleProperty("apiBaseUrl").orElse("http://10.0.2.2:8000")
+
 android {
     namespace = "com.freshmarket.v1"
     compileSdk = 35
 
     defaultConfig {
         applicationId = "com.freshmarket.v1"
-        minSdk = 26
+        minSdk = 21
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0"
-        buildConfigField("String", "API_BASE_URL", "\"http://10.0.2.2:8000\"")
+        buildConfigField("String", "API_BASE_URL", "\"${apiBaseUrl.get()}\"")
     }
 
     buildFeatures {
